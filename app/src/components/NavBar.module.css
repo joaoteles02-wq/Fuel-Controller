@@ -1,0 +1,117 @@
+.nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 4px 16px;
+  padding-bottom: max(6px, env(safe-area-inset-bottom));
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-top: 1px solid var(--glass-border);
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+  pointer-events: auto;
+  transition: background 0.3s ease;
+}
+
+.navBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  min-width: 56px;
+  min-height: 52px;
+  border-radius: 16px;
+  padding: 6px 10px;
+  touch-action: manipulation;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, filter 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+@media (hover: hover) {
+  .navBtn:hover {
+    background: rgba(96, 165, 250, 0.08);
+    transform: scale(1.04) rotateX(2deg);
+    box-shadow: 0 16px 50px rgba(96, 165, 250, 0.25);
+  }
+}
+
+.navBtn.active {
+  background: rgba(192, 122, 32, 0.12);
+}
+
+.navBtn:active {
+  transform: scale(0.95) translateY(1px);
+  background: rgba(96, 165, 250, 0.1);
+}
+
+.navBtn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.7);
+}
+
+.navIcon {
+  font-size: 1.3rem;
+  line-height: 1;
+  filter: grayscale(0.5);
+  transition: filter .2s ease;
+}
+
+.active .navIcon {
+  filter: none;
+}
+
+.navLabel {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--text-2);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color .2s ease;
+}
+
+.active .navLabel {
+  color: var(--accent);
+}
+
+/* Botão ADD — destaque central */
+.addIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent);
+  font-size: 1.4rem;
+  box-shadow:
+    4px 4px 12px rgba(0,0,0,0.2),
+    -2px -2px 8px rgba(255,255,255,0.1);
+  transition: transform .2s ease, box-shadow .2s ease;
+  margin-top: -8px;
+}
+
+.navBtn:hover .addIcon {
+  transform: scale(1.08);
+  box-shadow:
+    6px 6px 16px rgba(0,0,0,0.25),
+    -3px -3px 10px rgba(255,255,255,0.12);
+}
+
+.navBtn:active .addIcon {
+  transform: scale(0.95);
+}

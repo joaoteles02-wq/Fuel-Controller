@@ -1,0 +1,4 @@
+{
+  "name": "Smartfuel",
+  "requestFramePermissions": ["camera"]
+}

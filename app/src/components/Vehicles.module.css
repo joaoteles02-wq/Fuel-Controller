@@ -1,0 +1,74 @@
+.wrapper {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.pageTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0;
+  color: var(--accent);
+}
+
+.vehicleList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vehicleCard {
+  cursor: pointer;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.selected {
+  border: 1px solid var(--accent);
+  box-shadow: 0 0 15px rgba(0, 212, 170, 0.2);
+}
+
+.vehicleInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.vehicleName {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.vehicleDetails {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.selectionIndicator {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.configSection {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.configItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+}

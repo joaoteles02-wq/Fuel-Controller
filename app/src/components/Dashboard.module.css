@@ -1,0 +1,480 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Hero Odometer Skeuomorphism -> Sports Car Digital Odometer */
+.odoSection {
+  padding: 24px;
+  cursor: pointer;
+  overflow: hidden;
+  background: linear-gradient(145deg, #16181d, #1a1c23) !important;
+  border: 1px solid #2a2d35 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+  border-radius: 16px;
+}
+
+.carName {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #ff3333; /* Sports Red */
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(255, 51, 51, 0.4);
+}
+
+.odoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0 10px;
+  perspective: 1000px;
+}
+
+.odoBezel {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(to bottom, #111, #000);
+  padding: 12px 24px;
+  border-radius: 16px;
+  box-shadow: 
+    inset 0px 4px 10px rgba(255,255,255,0.1),
+    inset 0px -4px 10px rgba(0,0,0,0.8),
+    0 15px 35px rgba(0,0,0,0.6),
+    0 0 0 2px #222;
+  position: relative;
+}
+
+.odoBezel::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 40%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.05), transparent);
+  border-radius: 16px 16px 0 0;
+  pointer-events: none;
+}
+
+.odoWindow {
+  display: flex;
+  gap: 4px;
+  padding: 8px 12px;
+  background: #050505;
+  border-radius: 8px;
+  position: relative;
+  box-shadow: inset 0 4px 15px rgba(0,0,0,1), 0 1px 0 rgba(255,255,255,0.08);
+  overflow: hidden;
+}
+
+.odoDigit {
+  width: 38px;
+  height: 60px;
+  background: #0a0a0c;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff3333; /* Glowing red */
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  font-weight: 900;
+  position: relative;
+  box-shadow: 
+    inset 0 2px 5px rgba(0,0,0,0.8),
+    0 0 12px rgba(255, 51, 51, 0.15);
+  text-shadow: 
+    0 0 8px rgba(255, 51, 51, 0.8),
+    0 0 15px rgba(255, 51, 51, 0.4);
+  user-select: none;
+  border: 1px solid rgba(255, 51, 51, 0.1);
+}
+
+.odoDigit::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(0,0,0,0.4);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.odoHiddenInput {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 16px;
+  border: none;
+  background: transparent;
+}
+
+.odoUnit {
+  margin-left: 16px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: #4a4d52;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+
+/* Mini KPIs */
+.kpiRow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.kpiCard {
+  padding: 16px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+
+
+
+.kpiIcon {
+  font-size: 1.3rem;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.kpiValue {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Eficiência */
+.efficiencyCard {
+  padding: 18px 20px;
+}
+
+.progressTrack {
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--bg-subtle);
+  box-shadow: inset 2px 2px 5px var(--sd), inset -2px -2px 5px var(--sl);
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width .6s cubic-bezier(.34,1.56,.64,1);
+}
+
+/* Chart */
+.chartCard {
+  padding: 20px;
+}
+
+.chartTitle {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.barChart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 6px;
+  height: 120px;
+}
+
+.barCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  height: 100%;
+}
+
+.barValue {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--text-2);
+  white-space: nowrap;
+  transform: rotate(-25deg);
+  transform-origin: center;
+  min-height: 14px;
+}
+
+.barTrack {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  background: var(--bg-subtle);
+  border-radius: 6px 6px 0 0;
+  box-shadow: inset 2px 2px 6px var(--sd), inset -1px -1px 4px var(--sl);
+  overflow: hidden;
+}
+
+.barFill {
+  width: 100%;
+  border-radius: 6px 6px 0 0;
+  background: linear-gradient(180deg, var(--accent-2), var(--accent));
+  transition: height .6s cubic-bezier(.34,1.56,.64,1);
+  min-height: 4px;
+}
+
+.barMonth {
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-2);
+  letter-spacing: 0.04em;
+}
+
+/* History */
+.historySection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.historyTitle {
+  display: block;
+}
+
+.historyList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.historyItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  gap: 12px;
+}
+
+.historyLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1.5;
+}
+
+.historyOdo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+}
+
+.historyRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex: 1.2;
+}
+
+.historyStation {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+/* Dual Gauge Panel */
+.gaugeCard {
+  padding: 16px;
+}
+
+.gaugeRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.gaugeBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.gaugeOuter {
+  width: 140px;
+  height: 75px; /* Metade + um pouco para o centro */
+  background: var(--bg);
+  border-radius: 140px 140px 0 0;
+  display: flex;
+  align-items: flex-end; /* Base do semicírculo */
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    8px -8px 16px var(--sd),
+    -8px -8px 16px var(--sl);
+  padding-bottom: 2px;
+}
+
+.gaugeInner {
+  width: 106px;
+  height: 53px;
+  background: var(--bg);
+  border-radius: 106px 106px 0 0;
+  box-shadow: 
+    inset 4px 4px 8px var(--sd),
+    inset -4px -4px 8px var(--sl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  overflow: hidden;
+}
+
+.gaugeTicks {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+}
+
+.tick {
+  position: absolute;
+  top: 8px;
+  left: calc(50% - 1px);
+  width: 1.5px;
+  height: 6px;
+  background: var(--text-2);
+  transform-origin: 50% 45px; /* Hinge na base central */
+  opacity: 0.4;
+}
+
+.goalMarker {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  height: 50px;
+  background: transparent;
+  margin-left: -2px;
+  transform-origin: bottom center;
+  z-index: 5;
+}
+
+.goalMarker::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background: var(--success);
+  border-radius: 2px;
+  box-shadow: 0 0 6px var(--success);
+}
+
+.gaugeNeedle {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  height: 45px;
+  background: var(--accent-2);
+  margin-left: -2px;
+  transform-origin: bottom center;
+  z-index: 10;
+  transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+  border-radius: 4px 4px 0 0;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.gaugeCenter {
+  position: absolute;
+  bottom: -6px;
+  left: calc(50% - 8px);
+  width: 16px;
+  height: 16px;
+  background: var(--text);
+  border-radius: 50%;
+  z-index: 11;
+  box-shadow: inset 0 2px 4px rgba(255,255,255,0.2), 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.gaugeValue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 4;
+  margin-bottom: 4px;
+}
+
+.valueNum {
+  font-family: var(--font-display);
+  font-size: 1.35rem; /* Aumentado de 1.1rem */
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1;
+}
+
+.valueUnit {
+  font-size: 0.65rem; /* Aumentado de 0.55rem */
+  font-weight: 600;
+  color: var(--text-2);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.scaleLabels {
+  position: absolute;
+  bottom: 6px;
+  left: 12px;
+  right: 12px;
+  display: flex !important;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.8rem; /* Aumentado de 0.55rem para leitura mobile */
+  font-weight: 800;
+  color: var(--text-2);
+  opacity: 0.8;
+}
+
+.gaugeStats {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px 0;
+  border-top: 1px solid var(--bg-subtle);
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.statItem span {
+  font-size: 0.6rem;
+  color: var(--text-2);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.statItem strong {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--accent);
+}

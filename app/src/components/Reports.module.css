@@ -1,0 +1,219 @@
+.wrapper {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 90px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.pageTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.filterRow {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.filterBtn {
+  background: var(--bg);
+  border: 1px solid var(--shadow-light);
+  box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light);
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.filterActive {
+  background: var(--accent-2);
+  color: white;
+  box-shadow: inset 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.kpiBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.kpiLabel {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.kpiNum {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--accent);
+  text-align: right;
+  align-self: flex-end;
+}
+
+.chartCard {
+  padding: 20px;
+}
+
+.lineChart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 180px;
+  gap: 12px;
+  margin-top: 10px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.lineCol {
+  flex: 1;
+  min-width: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  height: 100%;
+}
+
+.lineValue {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.lineTrack {
+  width: 10px;
+  height: 100%;
+  background: var(--bg);
+  border-radius: 10px;
+  box-shadow: inset 2px 2px 5px var(--shadow-dark), inset -2px -2px 5px var(--shadow-light);
+  display: flex;
+  flex-direction: column-reverse;
+  overflow: hidden;
+}
+
+.lineFill {
+  width: 100%;
+  border-radius: 10px;
+  transition: height 0.5s ease;
+}
+
+.lineMonth {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.chartLegend {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+  font-size: 0.75rem;
+}
+
+.consumptionCard {
+  padding: 16px;
+}
+
+.consumptionList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.consumptionRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.consumptionDate {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  min-width: 65px;
+}
+
+.consumptionBar {
+  flex: 1;
+  height: 24px;
+  background: var(--bg);
+  border-radius: 6px;
+  box-shadow: inset 2px 2px 5px var(--shadow-dark), inset -2px -2px 5px var(--shadow-light);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+}
+
+.consumptionFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  opacity: 0.3;
+  transition: width 0.5s ease;
+}
+
+.consumptionVal {
+  position: relative;
+  font-size: 0.85rem;
+  font-weight: 800;
+  z-index: 1;
+}
+
+.stationsCard {
+  padding: 16px;
+}
+
+.stationsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stationRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stationRank {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--accent-2);
+  min-width: 30px;
+}
+
+.stationInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.stationName {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+}

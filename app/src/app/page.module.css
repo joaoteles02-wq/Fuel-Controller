@@ -1,0 +1,65 @@
+.appShell {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+}
+
+/* ─── Header ─────────────────────────────────────────────── */
+.header {
+  position: sticky;
+  top: calc(12px + env(safe-area-inset-top));
+  margin: calc(12px + env(safe-area-inset-top)) 16px 16px 16px;
+  align-self: center;
+  max-width: 480px;
+  width: calc(100% - 32px);
+  z-index: 100;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  box-shadow: var(--glass-shadow);
+  padding: 0 16px;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.headerInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.headerBrand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.headerIcon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.headerTitle {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
+  color: var(--text);
+}
+
+/* ─── Main ───────────────────────────────────────────────── */
+.main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 16px 100px;
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
+}

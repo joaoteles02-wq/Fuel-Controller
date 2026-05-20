@@ -1,0 +1,65 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pageTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--text);
+}
+
+.successBanner {
+  padding: 14px 18px;
+  border-radius: var(--r-card);
+  background: rgba(39,174,96,0.15);
+  color: var(--success);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: center;
+  animation: fadeIn .3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.autoField {
+  color: var(--text-2);
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 600;
+  background: var(--bg-subtle);
+  cursor: not-allowed;
+  box-shadow:
+    inset 3px 3px 8px var(--sd),
+    inset -3px -3px 8px var(--sl);
+}
+
+.hint {
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-weight: 600;
+  padding: 0 4px;
+}
+
+.saveBtn {
+  margin-top: 8px;
+  align-self: flex-end;
+  min-width: 160px;
+}

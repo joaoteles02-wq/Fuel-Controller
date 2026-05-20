@@ -1,0 +1,147 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
+}
+
+.modal {
+  background: var(--bg-card, #1e1e2e);
+  width: 100%;
+  max-width: 420px;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Cabeçalho ── */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text, #fff);
+  margin: 0;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  color: var(--text-muted, #888);
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+}
+
+/* ── Caixa de permissão / idle ── */
+.permBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0 4px;
+}
+
+.permIcon {
+  font-size: 3rem;
+}
+
+.permText {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-muted, #aaa);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── Botão iniciar ── */
+.startBtn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #00d4aa, #00a884);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.startBtn:active {
+  opacity: 0.8;
+}
+
+/* ── Spinner ── */
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(0,212,170,0.2);
+  border-top-color: #00d4aa;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Câmera ativa ── */
+.reader {
+  width: 100%;
+  min-height: 280px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #000;
+}
+
+:global(#qr-reader-direct video) {
+  width: 100% !important;
+  border-radius: 10px !important;
+  display: block !important;
+}
+
+:global(#qr-reader-direct canvas) {
+  display: none !important;
+}
+
+/* ── Erro ── */
+.errorBox {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 4px 0;
+}
+
+.errorText {
+  font-size: 0.85rem;
+  color: var(--text-muted, #aaa);
+  white-space: pre-line;
+  line-height: 1.6;
+  margin: 0;
+  background: rgba(255,80,80,0.07);
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid rgba(255,80,80,0.15);
+}
+
+/* ── Hint scanning ── */
+.hint {
+  text-align: center;
+  color: var(--text-muted, #aaa);
+  font-size: 0.85rem;
+  margin: 0;
+}
