@@ -601,7 +601,6 @@
   line-height: 1;
   letter-spacing: -0.02em;
   transition: color 0.4s, text-shadow 0.4s;
-  mix-blend-mode: screen;
 }
 
 /* Estado LOW (< 10L) — vermelho neon piscante */
@@ -646,4 +645,59 @@
 @keyframes textPulse {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0.55; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   CONSUMO MÉDIO — KPI FORA DO GAUGE
+════════════════════════════════════════════════════════ */
+.avgConsumptionBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 12px 8px;
+  flex: 1;
+  height: 100%;
+}
+
+.avgConsumptionValue {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  transition: color 0.4s;
+}
+
+.avgConsumptionUnit {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-2);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 2px;
+}
+
+.avgConsumptionLabel {
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: center;
+  margin-top: 4px;
+}
+
+.avgConsumptionGoal {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-top: 6px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid currentColor;
+  opacity: 0.85;
 }

@@ -227,8 +227,8 @@ export default function Dashboard() {
   const FuelCup = ({ liters, maxLiters, isEV: isElectric }: { liters: number; maxLiters: number; isEV: boolean }) => {
     const pct = Math.min(Math.max(liters / maxLiters, 0), 1) * 100;
     const isLow = !isElectric && liters < 10;
-    const fuelColor = isLow ? '#ff2020' : '#c0c8d8';
-    const fuelGlow  = isLow ? 'rgba(255,32,32,0.7)' : 'rgba(192,200,216,0.5)';
+    const fuelColor = isLow ? '#ff2020' : '#111111';
+    const fuelGlow  = isLow ? 'rgba(255,32,32,0.7)' : 'rgba(0,0,0,0)';
     const displayVal = isElectric ? `${pct.toFixed(0)}%` : `${liters.toFixed(1)}L`;
     const label      = isElectric ? 'Bateria' : 'Tanque';
 
@@ -309,18 +309,22 @@ export default function Dashboard() {
             maxLiters={maxTankValue}
             isEV={isEV}
           />
-          {/* Consumo Médio no lugar do gauge consumido */}
-          <div className={styles.gaugeBox} style={{ padding: '8px 4px 8px 4px' }}>
-            <div style={{ transform: 'scale(0.88)', transformOrigin: 'center top' }}>
-              <Gauge
-                value={avgConsumption > 0 ? avgConsumption.toFixed(2) : 0}
-                label={labelAvg}
-                max={15}
-                unit={unitAvg}
-                goalMarkerVal={goal}
-                color={avgConsumption >= goal ? 'var(--success)' : 'var(--accent-2)'}
-              />
-            </div>
+          {/* Consumo Médio — valor exibido fora do gauge, como KPI */}
+          <div className={styles.avgConsumptionBox}>
+            <span className={styles.avgConsumptionValue}
+              style={{ color: avgConsumption >= goal ? 'var(--success)' : 'var(--accent-2)' }}
+            >
+              {avgConsumption > 0 ? avgConsumption.toFixed(2) : '—'}
+            </span>
+            <span className={styles.avgConsumptionUnit}>{unitAvg}</span>
+            <span className={styles.avgConsumptionLabel}>{labelAvg}</span>
+            {goal > 0 && (
+              <span className={styles.avgConsumptionGoal}
+                style={{ color: avgConsumption >= goal ? 'var(--success)' : 'var(--danger)' }}
+              >
+                {avgConsumption >= goal ? '✓ Meta atingida' : `Meta: ${goal} ${unitAvg}`}
+              </span>
+            )}
           </div>
         </div>
       </div>
