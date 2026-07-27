@@ -192,7 +192,7 @@ export default function Dashboard() {
   const Gauge = ({ value, label, min = 0, max = 100, unit = '', color = 'var(--accent)', goalMarkerVal }: any) => {
     const numValue = Number(value) || 0;
     const percent = Math.min(Math.max((numValue - min) / (max - min), 0), 1);
-    const rotation = -90 + (percent * 180); // 180 degree coverage
+    const rotation = -90 + (percent * 180);
 
     return (
       <div className={styles.gaugeBox}>
@@ -212,7 +212,6 @@ export default function Dashboard() {
               <span className={styles.valueNum}>{numValue}</span>
               <span className={styles.valueUnit}>{unit}</span>
             </div>
-            {/* Scale labels at ends */}
             <div className={styles.scaleLabels}>
               <span>{min}</span>
               <span>{max}</span>
@@ -220,6 +219,54 @@ export default function Dashboard() {
           </div>
         </div>
         <span className="label" style={{marginTop: 8, marginBottom: 0, fontSize: '0.65rem'}}>{label}</span>
+      </div>
+    );
+  };
+
+  // ── COPO DE COMBUSTÍVEL ─────────────────────────────────────────────────────
+  const FuelCup = ({ liters, maxLiters, isEV: isElectric }: { liters: number; maxLiters: number; isEV: boolean }) => {
+    const pct = Math.min(Math.max(liters / maxLiters, 0), 1) * 100;
+    const isLow = !isElectric && liters < 10;
+    const fuelColor = isLow ? '#ff2020' : '#00ff88';
+    const fuelGlow  = isLow ? 'rgba(255,32,32,0.7)' : 'rgba(0,255,136,0.6)';
+    const displayVal = isElectric ? `${pct.toFixed(0)}%` : `${liters.toFixed(1)}L`;
+    const label      = isElectric ? 'Bateria' : 'Tanque';
+
+    return (
+      <div className={styles.fuelCupWrapper}>
+        <div className={`${styles.fuelCup} ${isLow ? styles.fuelCupLow : ''}`}>
+          {/* Graduações laterais */}
+          {[75, 50, 25].map(tick => (
+            <div key={tick} className={styles.fuelTick} style={{ bottom: `${tick}%` }}>
+              <span className={styles.fuelTickLabel}>{Math.round(maxLiters * tick / 100)}</span>
+            </div>
+          ))}
+          {/* Líquido */}
+          <div
+            className={`${styles.fuelLiquid} ${isLow ? styles.fuelLiquidLow : ''}`}
+            style={{
+              height: `${pct}%`,
+              background: isLow
+                ? `linear-gradient(180deg, rgba(255,60,60,0.95) 0%, rgba(200,0,0,0.85) 100%)`
+                : `linear-gradient(180deg, rgba(0,255,136,0.95) 0%, rgba(0,180,80,0.85) 100%)`,
+              boxShadow: `0 0 18px ${fuelGlow}, inset 0 0 8px rgba(255,255,255,0.15)`,
+            }}
+          >
+            {/* Onda animada no topo */}
+            <div className={styles.fuelWave} style={{ background: fuelColor }} />
+          </div>
+          {/* Reflexo do copo */}
+          <div className={styles.fuelGlassSheen} />
+          {/* Valor central */}
+          <div className={`${styles.fuelValue} ${isLow ? styles.fuelValueLow : ''}`}>
+            <span className={styles.fuelValueNum} style={{ color: fuelColor, textShadow: `0 0 12px ${fuelGlow}` }}>
+              {displayVal}
+            </span>
+          </div>
+        </div>
+        <span className={styles.fuelCupLabel} style={{ color: fuelColor, textShadow: `0 0 8px ${fuelGlow}` }}>
+          {label}
+        </span>
       </div>
     );
   };
@@ -252,24 +299,29 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* ── DUAL GAUGE PANEL ────────────────── */}
+      {/* ── FUEL CUP + CONSUMO MÉDIO PANEL ────────────────── */}
       <div className={`card ${styles.gaugeCard}`}>
         <span className="section-title" style={{ display: 'block', textAlign: 'center', marginBottom: '16px', fontSize: '1.2rem', color: 'var(--text-2)' }}>⚡ FOTO NF</span>
         <div className={styles.gaugeRow}>
-          <Gauge 
-            value={currentTankValue.toFixed(1)} 
-            label={labelTank} 
-            max={maxTankValue} 
-            unit={unitTank} 
+          {/* Copo de combustível / bateria */}
+          <FuelCup
+            liters={currentTankValue}
+            maxLiters={maxTankValue}
+            isEV={isEV}
           />
-          {/* Combustível consumido (L) ou Energia (kWh) */}
-          <Gauge 
-            value={estimatedFuelConsumed > 0 ? estimatedFuelConsumed.toFixed(1) : 0} 
-            label={labelConsumed}
-            max={tankCapacity}
-            unit={unitConsumed}
-            color="var(--accent-2)"
-          />
+          {/* Consumo Médio no lugar do gauge consumido */}
+          <div className={styles.gaugeBox} style={{ padding: '8px 4px 8px 4px' }}>
+            <div style={{ transform: 'scale(0.88)', transformOrigin: 'center top' }}>
+              <Gauge
+                value={avgConsumption > 0 ? avgConsumption.toFixed(2) : 0}
+                label={labelAvg}
+                max={15}
+                unit={unitAvg}
+                goalMarkerVal={goal}
+                color={avgConsumption >= goal ? 'var(--success)' : 'var(--accent-2)'}
+              />
+            </div>
+          </div>
         </div>
       </div>
 
@@ -391,22 +443,9 @@ export default function Dashboard() {
 
       {/* ── Mini KPIs ──────────────────────── */}
       <div className={styles.kpiRow}>
-        <div className={`card-sm ${styles.kpiCard}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        <div className={`card-sm ${styles.kpiCard}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gridColumn: '1 / -1' }}>
           <span className={`value-mono ${styles.kpiValue}`}>{kmSinceLastRefuel}</span>
           <span className="label" style={{ textAlign: 'center' }}>Km percorrido</span>
-        </div>
-        <div className={`card-sm ${styles.kpiCard}`} style={{ padding: '16px 4px 8px 4px' }}>
-          <div style={{ transform: 'scale(0.9)', transformOrigin: 'center bottom' }}>
-            {/* Consumo Médio geral (km/L) movido para cá */}
-            <Gauge 
-              value={avgConsumption > 0 ? avgConsumption.toFixed(2) : 0} 
-              label={labelAvg}
-              max={15} 
-              unit={unitAvg}
-              goalMarkerVal={goal}
-              color={avgConsumption >= goal ? 'var(--success)' : 'var(--accent-2)'}
-            />
-          </div>
         </div>
       </div>
 
