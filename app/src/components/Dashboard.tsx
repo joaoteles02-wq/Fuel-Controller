@@ -299,7 +299,7 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* ── FUEL CUP + CONSUMO MÉDIO PANEL ────────────────── */}
+      {/* ── FUEL CUP + CONSUMO MÉDIO + KM PANEL ──────────── */}
       <div className={`card ${styles.gaugeCard}`}>
         <span className="section-title" style={{ display: 'block', textAlign: 'center', marginBottom: '16px', fontSize: '1.2rem', color: 'var(--text-2)' }}>⚡ FOTO NF</span>
         <div className={styles.gaugeRow}>
@@ -325,6 +325,12 @@ export default function Dashboard() {
                 {avgConsumption >= goal ? '✓ Meta atingida' : `Meta: ${goal} ${unitAvg}`}
               </span>
             )}
+          </div>
+          {/* Km percorrido — à direita do consumo médio */}
+          <div className={styles.kmBox}>
+            <span className={styles.kmValue}>{kmSinceLastRefuel}</span>
+            <span className={styles.kmUnit}>km</span>
+            <span className={styles.kmLabel}>Percorrido</span>
           </div>
         </div>
       </div>
@@ -445,13 +451,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* ── Mini KPIs ──────────────────────── */}
-      <div className={styles.kpiRow}>
-        <div className={`card-sm ${styles.kpiCard}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gridColumn: '1 / -1' }}>
-          <span className={`value-mono ${styles.kpiValue}`}>{kmSinceLastRefuel}</span>
-          <span className="label" style={{ textAlign: 'center' }}>Km percorrido</span>
-        </div>
-      </div>
+
 
 
       {/* ── Gráfico Consumo ────────────────────── */}
