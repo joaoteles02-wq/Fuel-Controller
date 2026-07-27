@@ -227,8 +227,8 @@ export default function Dashboard() {
   const FuelCup = ({ liters, maxLiters, isEV: isElectric }: { liters: number; maxLiters: number; isEV: boolean }) => {
     const pct = Math.min(Math.max(liters / maxLiters, 0), 1) * 100;
     const isLow = !isElectric && liters < 10;
-    const fuelColor = isLow ? '#ff2020' : '#00ff88';
-    const fuelGlow  = isLow ? 'rgba(255,32,32,0.7)' : 'rgba(0,255,136,0.6)';
+    const fuelColor = isLow ? '#ff2020' : '#c0c8d8';
+    const fuelGlow  = isLow ? 'rgba(255,32,32,0.7)' : 'rgba(192,200,216,0.5)';
     const displayVal = isElectric ? `${pct.toFixed(0)}%` : `${liters.toFixed(1)}L`;
     const label      = isElectric ? 'Bateria' : 'Tanque';
 
@@ -368,7 +368,7 @@ export default function Dashboard() {
           <div className={styles.odoBezel}>
             <div className={styles.odoWindow}>
               {/* Digit slots for skeuomorphic look */}
-              {odoValue.padStart(7, '0').split('').map((digit, i) => (
+              {odoValue.padStart(6, '0').split('').map((digit, i) => (
                 <div key={i} className={styles.odoDigit}>
                   <div className={styles.odoDigitInner}>
                     {digit}
